@@ -20,83 +20,6 @@ int **alloc_matrix (int graph_size){
     return m;
 }
 
-int* dijkstra_matrix (int** adjacent_matrix, int graph_size, int vertex_ini){
-    int *distancia, *fechado, *aberto, *anterior, v_ini = vertex_ini, abertos, k, inf = INT_MAX/2, maior = INT_MAX, custo, i, j, askZero = 0;;
-    distancia = alloc_array (graph_size);
-    fechado = alloc_array (graph_size);
-    aberto = alloc_array (graph_size);
-    anterior = alloc_array (graph_size);
-    for(i = 0; i<graph_size; i++){
-        if(i == v_ini)
-            distancia[i] = 0;
-        else
-            distancia[i] = inf;
-    }
-
-    for(i = 0; i<graph_size; i++){
-        if(i == v_ini)
-            fechado[i] = 1;
-        else
-            fechado[i] = 0;
-    }
-
-    for(i = 0; i<graph_size; i++){
-        if(i == v_ini)
-            aberto[i] = 0;
-        else
-            aberto[i] = 1;
-    }
-    abertos = 1;
-
-    for(i = 0; i<graph_size; i++){
-        if(i == v_ini)
-            anterior[i] = 0;
-        else
-            anterior[i] = 0;
-    }
-
-    while (abertos != graph_size){
-        if(abertos==1)
-            k=v_ini;
-        else{
-            for (i=0; i<graph_size; i++){
-                if(aberto[i]==1 && distancia[i]<maior){
-                    maior = distancia[i];
-                    k=i;
-                }
-            }
-        }
-        if(abertos!=1){
-            aberto[k] = 0;
-            fechado[k] = 1;
-        }
-
-        for(j=0; j<graph_size; j++){
-            if(adjacent_matrix[k][j]!=0){
-                if(aberto[j]!=0){
-                    custo = MIN (distancia[j], (distancia[k]+adjacent_matrix[k][j]));
-                    if(custo < distancia[j]){
-                        distancia[j] = custo;
-                        anterior[j] = k;
-                    }
-                }
-            }
-            else{
-                askZero++;
-            }
-        }
-        abertos ++;
-        maior = INT_MAX;
-    }
-
-    /*for(j=0;j<graph_size;j++)
-        cout<<distancia[j]<<" ";
-    getchar();*/
-    printf("Ignorou %d posicoes\n", askZero);
-    return (distancia);
-
-}
-
 int* dijkstra_list (t_graph** adjacent_list, int graph_size, int vertex_ini){
 
     int *distancia, *fechado, *aberto, *anterior, v_ini = vertex_ini, abertos, k, inf = INT_MAX/2, maior = INT_MAX, custo, i, j;
@@ -179,17 +102,6 @@ void print_list(t_graph *graph){
 
 }
 
-int **get_adjacent_matrix(int **adjacent_matrix, int graph_size, FILE *f){
-    int u, v, w;
-    char l;
-
-    while (fscanf(f, "%c %d %d %d\n", &l, &u, &v, &w) != EOF){
-        adjacent_matrix[u][v] = w;
-    }
-    return adjacent_matrix;
-
-}
-
 t_graph** add_to_list_undir(t_graph **adjacent_list, int u, int v, int w){
     //printf("%d %d %d\n", u,v,w);
     t_graph *c, *d, *p;
@@ -233,7 +145,7 @@ void readParameters (int argc, char **argv){
 
     if(argc != 4){
         printf("Parametros incorretos!\n");
-        printf("./dijkstra < -d :distanceGraph or -t :timeTravelGraph > < -NY || -COL || -FLA || -BAY || -TES (test) instances> < -m for matrix or -l for list >\n");
+        printf("./dijkstra < -d :distanceGraph or -t :timeTravelGraph > < -NY || -COL || -FLA || -BAY || -TES (test) instances> < -l for list >\n");
         exit(0);
     }
 
@@ -313,12 +225,6 @@ int main(int argc, char **argv){
     if(strcmp(data_structure_type, "-l") == 0){
         adjacent_list = get_adjacent_list(adjacent_list, graph_size, f);
         distance = dijkstra_list (adjacent_list, graph_size, 1);
-    }
-
-    else if(strcmp(data_structure_type, "-m") == 0){
-        adjacent_matrix = alloc_matrix(graph_size);
-        adjacent_matrix = get_adjacent_matrix(adjacent_matrix, graph_size, f);
-        distance = dijkstra_matrix (adjacent_matrix, graph_size, 1);
     }
 
 
