@@ -1,7 +1,5 @@
 #include "../sharedLibrary/adjacentList.h"
 
-#define MIN(x, y) (((x) < (y)) ? (x) : (y))
-
 char graph_folder[60];
 char *path_folder;
 char data_structure_type[3];
