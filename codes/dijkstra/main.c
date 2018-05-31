@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "../sharedLibrary/adjacentList.h"
 
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
@@ -5,6 +6,13 @@
 char graph_folder[60];
 char *path_folder;
 char data_structure_type[3];
+=======
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <limits.h>
+#include "../graph.h"
+>>>>>>> 3a864d1b224c7b053484eb571869facda16696d2
 
 int* alloc_array (int graph_size){
     int *a;
@@ -160,7 +168,7 @@ int main(int argc, char **argv){
 
     f = fopen (graph_folder, "r");
     if(f==NULL){
-        printf("Fail to read file!");
+        printf("Fail to read file!\n");
         exit(0);
     }
 
