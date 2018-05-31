@@ -2,27 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <limits.h>
-
-
-struct type_graph{
-    int vertex;
-    int cost;
-    struct type_graph *prox;
-};
-
-struct type_path{
-    int src;
-    int dest;
-};
-
-typedef struct type_graph t_graph;
-typedef struct type_paph t_path;
-#define new_node (t_graph*)malloc(sizeof(t_graph))
-#define MIN(x, y) (((x) < (y)) ? (x) : (y))
-
-char graph_folder[60];
-char *path_folder;
-char data_structure_type[3];
+#include "../graph.h"
 
 int* alloc_array (int graph_size){
     int *a;
@@ -324,7 +304,7 @@ int main(int argc, char **argv){
 
     f = fopen (graph_folder, "r");
     if(f==NULL){
-        printf("Fail to read file!");
+        printf("Fail to read file!\n");
         exit(0);
     }
 
