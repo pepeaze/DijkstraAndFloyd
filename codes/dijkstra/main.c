@@ -1,101 +1,10 @@
 #include "../sharedLibrary/adjacentList.h"
-
-#define MIN(x, y) (((x) < (y)) ? (x) : (y))
+#include "dijkstra_array.h"
+#include "dijkstra_heap.h"
 
 char graph_folder[60];
 char *path_folder;
 char data_structure_type[3];
-
-
-int* alloc_array (int graph_size){
-    int *a;
-    a = (int*)calloc(graph_size,sizeof(int));
-    return a;
-}
-
-int **alloc_matrix (int graph_size){
-    int **m;
-    int i;
-    m = (int**)malloc(graph_size*sizeof(int*));
-    for (i=0; i<graph_size; i++){
-        m[i] = (int*)calloc(graph_size,sizeof(int));
-    }
-    return m;
-}
-
-int* dijkstra_list (t_graph** adjacent_list, int graph_size, int vertex_ini){
-
-    int *distancia, *fechado, *aberto, *anterior, v_ini = vertex_ini, abertos, k, inf = INT_MAX/2, maior = INT_MAX, custo, i, j;
-    distancia = alloc_array (graph_size);
-    fechado = alloc_array (graph_size);
-    aberto = alloc_array (graph_size);
-    anterior = alloc_array (graph_size);
-    for(i = 0; i<graph_size; i++){
-        if(i == v_ini)
-            distancia[i] = 0;
-        else
-            distancia[i] = inf;
-    }
-
-    for(i = 0; i<graph_size; i++){
-        if(i == v_ini)
-            fechado[i] = 1;
-        else
-            fechado[i] = 0;
-    }
-
-    for(i = 0; i<graph_size; i++){
-        if(i == v_ini)
-            aberto[i] = 0;
-        else
-            aberto[i] = 1;
-    }
-    abertos = 1;
-
-    for(i = 0; i<graph_size; i++){
-        if(i == v_ini)
-            anterior[i] = 0;
-        else
-            anterior[i] = 0;
-    }
-
-    while (abertos != graph_size){
-        if(abertos==1)
-            k=v_ini;
-        else{
-            for (i=0; i<graph_size; i++){
-                if(aberto[i]==1 && distancia[i]<maior){
-                    maior = distancia[i];
-                    k=i;
-                }
-            }
-        }
-        if(abertos!=1){
-            aberto[k] = 0;
-            fechado[k] = 1;
-        }
-
-        t_graph* p;
-
-        for(p = adjacent_list[k]; p!=NULL; p = p->prox){
-            if(aberto[p->vertex]!=0){
-                custo = MIN (distancia[p->vertex], (distancia[k]+p->cost));
-                if(custo < distancia[p->vertex]){
-                    distancia[p->vertex] = custo;
-                    anterior[p->vertex] = k;
-                }
-            }
-        }
-        abertos ++;
-        maior = INT_MAX;
-    }
-
-    /*for(j=0;j<graph_size;j++)
-        cout<<distancia[j]<<" ";
-    getchar();*/
-
-    return (distancia);
-}
 
 void print_list(t_graph *graph){
     t_graph *p;
@@ -109,7 +18,7 @@ void readParameters (int argc, char **argv){
 
     if(argc != 4){
         printf("Parametros incorretos!\n");
-        printf("./dijkstra < -d :distanceGraph or -t :timeTravelGraph > < -NY || -COL || -FLA || -BAY || -TES (test) instances> < -l for list >\n");
+        printf("./dijkstra < -d :distanceGraph or -t :timeTravelGraph > < -NY || -COL || -FLA || -BAY || -TES (test) instances> < -v for array or -h for heap\n");
         exit(0);
     }
 
@@ -154,7 +63,8 @@ int main(int argc, char **argv){
     int **adjacent_matrix;
 
     int **distance_matrix;
-    int *distance;
+    t_graph_info dijkstra_results;
+    //int *distance;
     int i;
 
     FILE *f;
@@ -166,25 +76,27 @@ int main(int argc, char **argv){
     }
 
     graph_size = get_graph_size(f);
+    adjacent_list = get_adjacent_list(adjacent_list, graph_size, f);
 
-    if(strcmp(data_structure_type, "-l") == 0){
-        adjacent_list = get_adjacent_list(adjacent_list, graph_size, f);
-        distance = dijkstra_list (adjacent_list, graph_size, 1);
+    if(strcmp(data_structure_type, "-v") == 0){
+        dijkstra_results = dijkstra_array (adjacent_list, graph_size, 1);
     }
 
+    if(strcmp(data_structure_type, "-h") == 0){
+        dijkstra_results = dijkstra_heap (adjacent_list, graph_size, 1);
+    }
 
-        //for(int j=0;j<graph_size;j++)
-          //  distance_matrix[i][j] = distance[j];
-        //free(distance);
-
-    //}
-    //printf("\n");
     if(strcmp(argv[2],"-TES")==0){
         for(i=0;i<graph_size;i++){
-            printf("%d\t",distance[i]);
+            printf("%d\t",dijkstra_results.distancia[i]);
         }
         printf("\n");
     }
+
+    else{
+        printf("Distance from 1 to %d vertex: %d\n", graph_size,dijkstra_results.distancia[graph_size-1]);
+    }
+
 
 
 
