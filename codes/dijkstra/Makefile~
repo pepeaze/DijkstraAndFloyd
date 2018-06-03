@@ -1,0 +1,4 @@
+all: main.c
+	gcc -o dijkstra main.c ../sharedLibrary/adjacentList.c dijkstra_array.c
+clean: 
+	$(RM) dijkstra
