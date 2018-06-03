@@ -1,6 +1,9 @@
 #include "../sharedLibrary/adjacentList.h"
+<<<<<<< HEAD
 #include "dijkstra_array.h"
 #include "dijkstra_heap.h"
+=======
+>>>>>>> f135a99c04b9049bfdcad4359dc826d38e1f4326
 
 char graph_folder[60];
 char *path_folder;

@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <limits.h>
 #define new_node (t_graph*)malloc(sizeof(t_graph))
+#define MIN(x, y) (((x) < (y)) ? (x) : (y))
 
 struct type_graph{
     int vertex;
@@ -18,7 +19,7 @@ struct type_path{
 };
 
 typedef struct type_graph t_graph;
-typedef struct type_paph t_path;
+typedef struct type_path t_path;
 
 int get_graph_size(FILE *f);
 t_graph **get_adjacent_list(t_graph ** adjacent_list, int graph_size, FILE *f);
