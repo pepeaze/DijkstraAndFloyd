@@ -18,6 +18,11 @@ struct type_path{
     int dest;
 };
 
+typedef struct{
+    int *distancia;
+    int *anterior;
+}t_graph_info;
+
 typedef struct type_graph t_graph;
 typedef struct type_path t_path;
 
