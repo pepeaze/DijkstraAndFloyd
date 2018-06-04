@@ -16,7 +16,7 @@ int **alloc_matrix (int graph_size){
     return m;
 }
 
-t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex_ini){
+t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex_ini, int vertex_end){
     printf("dijkstra_array\n");
     t_graph_info r;
     int *fechado, *aberto, v_ini = vertex_ini, abertos, k, inf = INT_MAX/2, maior = INT_MAX, custo, i, j;
@@ -53,7 +53,8 @@ t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex
             r.anterior[i] = 0;
     }
 
-    while (abertos != graph_size){
+    //while (abertos != graph_size){
+    while (k!=vertex_end){
         if(abertos==1)
             k=v_ini;
         else{
