@@ -50,16 +50,25 @@ int main(int argc, char **argv){
     if(strcmp(data_structure_type, "-v") == 0){
         printf("dijkstra_array\n");
         for(i=0;i<3;i++){
+            clock_t begin = clock();
             dijkstra_results = dijkstra_array (adjacent_list, graph_size, path[i].src, path[i].dest);
+            clock_t end = clock();
+            double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
             printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
+            show_time_spent(time_spent);
+
         }
     }
 
     if(strcmp(data_structure_type, "-h") == 0){
         printf("dijkstra_heap\n");
         for(i=0;i<3;i++){
+            clock_t begin = clock();
             dijkstra_results = dijkstra_heap (adjacent_list, graph_size, path[i].src, path[i].dest);
+            clock_t end = clock();
+            double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
             printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
+            show_time_spent(time_spent);
         }
     }
 
