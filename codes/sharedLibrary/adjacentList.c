@@ -116,3 +116,15 @@ void readParameters (int argc, char **argv){
 
     strcpy(data_structure_type, argv[3]);
 }
+
+void show_time_spent (double time_spent){
+    if(time_spent<60)
+        printf("Time spent: %lf secs\n",time_spent);
+    else{
+        int min,sec;
+        min = time_spent/60;
+		sec = (int)time_spent%60;
+		printf("Time spent: %d mins %d secs\n",min,sec);
+    }
+
+}
