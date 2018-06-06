@@ -227,7 +227,6 @@ print_heap(Heap *h){
 }
 
 t_graph_info dijkstra_heap (t_graph** adjacent_list, int graph_size, int vertex_ini, int vertex_end){
-    printf("dijkstra_heap\n");
     t_graph_info r;
     int *fechado, *aberto, v_ini = vertex_ini, abertos, k, inf = INT_MAX/2, maior = INT_MAX, custo, i, j;
     int dist_v1,dist_k,edge_weight;
@@ -259,8 +258,9 @@ t_graph_info dijkstra_heap (t_graph** adjacent_list, int graph_size, int vertex_
 	}
 
 	//while heap is not empty
-	while (k!=vertex_end){
-	//while(h->n != 0){
+	//while (k!=vertex_end){
+	//printf("heap size: %d\n", h->n);getchar();
+	while(h->n != 0){
         k = removeMin(h);
 		t_graph* p;
         for(p = adjacent_list[k]; p!=NULL; p = p->prox){

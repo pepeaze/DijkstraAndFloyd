@@ -17,7 +17,6 @@ int **alloc_matrix (int graph_size){
 }
 
 t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex_ini, int vertex_end){
-    printf("dijkstra_array\n");
     t_graph_info r;
     int *fechado, *aberto, v_ini = vertex_ini, abertos, k, inf = INT_MAX/2, maior = INT_MAX, custo, i, j;
     r.distancia = alloc_array (graph_size);
