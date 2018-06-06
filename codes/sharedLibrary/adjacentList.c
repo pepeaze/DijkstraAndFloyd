@@ -75,3 +75,44 @@ t_graph** add_to_list_undir(t_graph **adjacent_list, int u, int v, int w){
 
     return (adjacent_list);
 }
+
+void readParameters (int argc, char **argv){
+
+    if(argc != 4){
+        printf("Parametros incorretos!\n");
+        printf("./dijkstra < -d :distanceGraph or -t :timeTravelGraph > < -NY || -COL || -FLA || -BAY || -RO || -TES (test) instances> < -v for array or -h for heap\n");
+        exit(0);
+    }
+
+    if(strcmp(argv[1],"-d")==0){
+        if(strcmp(argv[2],"-NY")==0)
+            strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.NY.gr");
+        else if(strcmp(argv[2],"-COL")==0)
+            strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.COL.gr");
+        else if(strcmp(argv[2],"-FLA")==0)
+            strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.FLA.gr");
+        else if(strcmp(argv[2],"-BAY")==0)
+            strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.BAY.gr");
+        else if(strcmp(argv[2],"-RO")==0)
+            strcpy(graph_folder,"../../instances/distanceGraphs/rome99.gr");
+        else if(strcmp(argv[2],"-TES")==0)
+            strcpy(graph_folder,"../../instances/teste/graph.gr");
+    }
+
+    else if(strcmp(argv[1],"-t")==0){
+        if(strcmp(argv[2],"-NY")==0)
+            strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.NY.gr");
+        else if(strcmp(argv[2],"-COL")==0)
+            strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.COL.gr");
+        else if(strcmp(argv[2],"-FLA")==0)
+            strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.FLA.gr");
+        else if(strcmp(argv[2],"-BAY")==0)
+            strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.BAY.gr");
+        else if(strcmp(argv[2],"-RO")==0)
+            strcpy(graph_folder,"../../instances/distanceGraphs/rome99.gr");
+        else if(strcmp(argv[2],"-TES")==0)
+            strcpy(graph_folder,"../../instances/teste/graph.gr");
+    }
+
+    strcpy(data_structure_type, argv[3]);
+}
