@@ -1,25 +1,35 @@
 #include "adjacentList.h"
 
-int get_graph_size(FILE *f){
+int get_graph_size(FILE *f, char **argv){
     char lixo[100];
     char l;
     int l1;
     int cont = 0;
     int graph_size;
 
-    while (cont <= 3){
-        fgets(lixo,100,f);
-        cont++;
+    if(strcmp(argv[2],"-RO")==0){
+        while (cont <= 13){
+            fgets(lixo,100,f);
+            cont++;
+        }
+        fscanf(f, "%c %s %d %d\n", lixo, lixo, &graph_size, &l1);
     }
-    fscanf(f, "%c %s %d %d\n", lixo, lixo, &graph_size, &l1);
-    fgets(lixo,100,f);
-    fscanf(f, "%c\n", &l);
+    else{
+        while (cont <= 3){
+            fgets(lixo,100,f);
+            cont++;
+        }
+        fscanf(f, "%c %s %d %d\n", lixo, lixo, &graph_size, &l1);
+        fgets(lixo,100,f);
+        fscanf(f, "%c\n", &l);
+    }
+
     printf("Graph Vertexes: %d\n", graph_size);
 
     return graph_size;
 }
 
-t_graph **get_adjacent_list(t_graph ** adjacent_list, int graph_size, FILE *f){
+t_graph **get_adjacent_list(t_graph ** adjacent_list, int graph_size, FILE *f, char **argv){
 
     int u, v, w, i;
     char l;
@@ -29,8 +39,16 @@ t_graph **get_adjacent_list(t_graph ** adjacent_list, int graph_size, FILE *f){
         adjacent_list[i] = NULL;
     }
 
-    while (fscanf(f, "%c %d %d %d\n", &l, &u, &v, &w) != EOF){
-        adjacent_list = add_to_list_undir(adjacent_list, u, v, w);
+    if(strcmp(argv[2],"-RO")==0){
+        while (fscanf(f, "%c %d %d %d\n", &l, &u, &v, &w) != EOF){
+            adjacent_list = add_to_list_undir(adjacent_list, u-1, v-1, w);
+            adjacent_list = add_to_list_undir(adjacent_list, v-1, u-1, w);
+        }
+    }
+    else{
+        while (fscanf(f, "%c %d %d %d\n", &l, &u, &v, &w) != EOF){
+            adjacent_list = add_to_list_undir(adjacent_list, u-1, v-1, w);
+        }
     }
 
     return adjacent_list;

@@ -26,8 +26,8 @@ typedef struct{
 typedef struct type_graph t_graph;
 typedef struct type_path t_path;
 
-int get_graph_size(FILE *f);
-t_graph **get_adjacent_list(t_graph ** adjacent_list, int graph_size, FILE *f);
+int get_graph_size(FILE *f, char **argv);
+t_graph **get_adjacent_list(t_graph ** adjacent_list, int graph_size, FILE *f, char **argv);
 t_graph** add_to_list_undir(t_graph **adjacent_list, int u, int v, int w);
 
 #endif // ADJACENTLIST_H_
