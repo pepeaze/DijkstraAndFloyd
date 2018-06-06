@@ -81,6 +81,7 @@ int *floyd_list(t_graph** adjacent_list, int graph_size, int vertex_ini, int ver
         }
     }
 
+    // printf("Adjacent Matrix:\n");
     // /* print matrix */
     // for (i = currentVertex; i < graph_size; i++)
     // {
@@ -110,13 +111,15 @@ int *floyd_list(t_graph** adjacent_list, int graph_size, int vertex_ini, int ver
         size++;
     }
 
+    // printf("Path:\n");
     // /* Print path */
     // for (i = 0; i < size; i++)
     // {
     //     printf("%d\t", path[i]);
     // }
-    // printf("\n");
+    // printf("\n\n");
 
+    // printf("Distance Matrix:\n");
     // /* print matrix */
     // for (i = currentVertex; i < graph_size; i++)
     // {
@@ -127,6 +130,9 @@ int *floyd_list(t_graph** adjacent_list, int graph_size, int vertex_ini, int ver
 
     //     printf("\n");
     // }
+    // printf("\n");
+
+    printFile(minDistanceMatrix, graph_size);
 
     return path;
 }
@@ -137,43 +143,6 @@ void print_list(t_graph *graph){
         printf("%d|%d\t", p->vertex, p->cost);
     }
 
-}
-
-void readParameters (int argc, char **argv){
-
-    if(argc != 4){
-        printf("Parametros incorretos!\n");
-        printf("./dijkstra < -d :distanceGraph or -t :timeTravelGraph > < -NY || -COL || -FLA || -BAY || -TES (test) instances> < -l for list >\n");
-        exit(0);
-    }
-
-    if(strcmp(argv[1],"-d")==0){
-        if(strcmp(argv[2],"-NY")==0)
-            strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.NY.gr");
-        else if(strcmp(argv[2],"-COL")==0)
-            strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.COL.gr");
-        else if(strcmp(argv[2],"-FLA")==0)
-            strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.FLA.gr");
-        else if(strcmp(argv[2],"-BAY")==0)
-            strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.BAY.gr");
-        else if(strcmp(argv[2],"-TES")==0)
-            strcpy(graph_folder,"../../instances/teste/graph.gr");
-    }
-
-    else if(strcmp(argv[1],"-t")==0){
-        if(strcmp(argv[2],"-NY")==0)
-            strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.NY.gr");
-        else if(strcmp(argv[2],"-COL")==0)
-            strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.COL.gr");
-        else if(strcmp(argv[2],"-FLA")==0)
-            strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.FLA.gr");
-        else if(strcmp(argv[2],"-BAY")==0)
-            strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.BAY.gr");
-        else if(strcmp(argv[2],"-TES")==0)
-            strcpy(graph_folder,"../../instances/teste/graph.gr");
-    }
-
-    strcpy(data_structure_type, argv[3]);
 }
 
 int main(int argc, char **argv){
@@ -199,11 +168,15 @@ int main(int argc, char **argv){
         exit(0);
     }
 
-    graph_size = get_graph_size(f);
+    graph_size = get_graph_size(f, argv);
 
     if(strcmp(data_structure_type, "-l") == 0){
-        adjacent_list = get_adjacent_list(adjacent_list, graph_size, f);
+        adjacent_list = get_adjacent_list(adjacent_list, graph_size, f, argv);
+        clock_t begin = clock();
         distance = floyd_list(adjacent_list, graph_size, 0, 6);
+        clock_t end = clock();
+        double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+        show_time_spent(time_spent);
     }
 
 
@@ -213,10 +186,10 @@ int main(int argc, char **argv){
 
     //}
     //printf("\n");
-    if(strcmp(argv[2],"-TES")==0){
-        for(i=0;i<graph_size;i++){
-            printf("%d\t",distance[i]);
-        }
-        printf("\n");
-    }
+    // if(strcmp(argv[2],"-TES")==0){
+    //     for(i=0;i<graph_size;i++){
+    //         printf("%d\t",distance[i]);
+    //     }
+    //     printf("\n");
+    // }
 }
