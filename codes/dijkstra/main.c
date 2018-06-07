@@ -61,15 +61,48 @@ int main(int argc, char **argv){
     }
 
     if(strcmp(data_structure_type, "-h") == 0){
-        printf("dijkstra_heap\n");
-        for(i=0;i<3;i++){
+        //printf("dijkstra_heap\n");
+        //for(i=0;i<3;i++){
             clock_t begin = clock();
-            dijkstra_results = dijkstra_heap (adjacent_list, graph_size, path[i].src, path[i].dest);
+            dijkstra_results = dijkstra_heap (adjacent_list, graph_size, 1, 10);
             clock_t end = clock();
             double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-            printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
+            //printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
+            int maior = 0;
+            int medio = 0;
+            int menor = 0;
+            int diameter_vertex = 0;
+            int center_vertex = 0;
+            int min_vertex = 0;
+            int i;
+            for (i=0; i<graph_size; i++){
+                if(maior<dijkstra_results.distancia[i]){
+                    maior = dijkstra_results.distancia[i];
+                    diameter_vertex = i;
+                }
+            }
+            for (i=0; i<graph_size; i++){
+                if(dijkstra_results.distancia[i] >= (maior/2)-100 && dijkstra_results.distancia[i] <= (maior/2)+100){
+                    //maior = dijkstra_results.distancia[i];
+                    medio = dijkstra_results.distancia[i];
+                    center_vertex = i;
+                }
+            }
+
+            for (i=0; i<graph_size; i++){
+                if(dijkstra_results.distancia[i] >= (medio/2)-100 && dijkstra_results.distancia[i] <= (medio/2)+100){
+                    //maior = dijkstra_results.distancia[i];
+                    menor = dijkstra_results.distancia[i];
+                    min_vertex = i;
+                }
+            }
+            printf("Facil: 1 X %d vertex\n", min_vertex+1);
+            printf("Medio: 1 X %d vertex\n", center_vertex+1);
+            printf("Dificil: 1 X %d vertex\n", diameter_vertex+1);
+
+
             show_time_spent(time_spent);
-        }
+        //}
     }
 
     if(strcmp(argv[2],"-TES")==0){
