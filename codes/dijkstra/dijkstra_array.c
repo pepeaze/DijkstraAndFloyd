@@ -20,7 +20,7 @@ t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex
     t_graph_info r;
     int *fechado, *aberto, v_ini = vertex_ini, abertos, k, inf = INT_MAX/2, maior = INT_MAX, custo, i, j;
     r.distancia = alloc_array (graph_size);
-    fechado = alloc_array (graph_size);
+    r.fechado = alloc_array (graph_size);
     aberto = alloc_array (graph_size);
     r.anterior = alloc_array (graph_size);
     for(i = 0; i<graph_size; i++){
@@ -32,9 +32,9 @@ t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex
 
     for(i = 0; i<graph_size; i++){
         if(i == v_ini)
-            fechado[i] = 1;
+            r.fechado[i] = 1;
         else
-            fechado[i] = 0;
+            r.fechado[i] = 0;
     }
 
     for(i = 0; i<graph_size; i++){
@@ -52,6 +52,7 @@ t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex
             r.anterior[i] = 0;
     }
 
+
     //while (abertos != graph_size){
     while (k!=vertex_end){
         if(abertos==1)
@@ -66,7 +67,7 @@ t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex
         }
         if(abertos!=1){
             aberto[k] = 0;
-            fechado[k] = 1;
+            r.fechado[k] = 1;
         }
 
         t_graph* p;
@@ -83,6 +84,7 @@ t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex
         abertos ++;
         maior = INT_MAX;
     }
+
 
     /*for(j=0;j<graph_size;j++)
         cout<<distancia[j]<<" ";

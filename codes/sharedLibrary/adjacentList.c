@@ -85,14 +85,30 @@ void readParameters (int argc, char **argv){
     }
 
     if(strcmp(argv[1],"-d")==0){
-        if(strcmp(argv[2],"-NY")==0)
+        if(strcmp(argv[2],"-NY")==0){
             strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.NY.gr");
-        else if(strcmp(argv[2],"-COL")==0)
+            strcpy(coord_folder,"../../instances/coordinates/USA-road-d.NY.co");
+            strcpy(visited_coordinates_folder, "../../instances/coordinates/USA-road-d.NY.Visited");
+            strcpy(path_coordinates_folder, "../../instances/coordinates/USA-road-d.NY.Path");
+        }
+        else if(strcmp(argv[2],"-COL")==0){
             strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.COL.gr");
-        else if(strcmp(argv[2],"-FLA")==0)
+            strcpy(coord_folder,"../../instances/coordinates/USA-road-d.COL.co");
+            strcpy(visited_coordinates_folder, "../../instances/coordinates/USA-road-d.COL.Visited");
+            strcpy(path_coordinates_folder, "../../instances/coordinates/USA-road-d.COL.Path");
+        }
+        else if(strcmp(argv[2],"-FLA")==0){
             strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.FLA.gr");
-        else if(strcmp(argv[2],"-BAY")==0)
+            strcpy(coord_folder,"../../instances/coordinates/USA-road-d.FLA.co");
+            strcpy(visited_coordinates_folder, "../../instances/coordinates/USA-road-d.FLA.Visited");
+            strcpy(path_coordinates_folder, "../../instances/coordinates/USA-road-d.FLA.Path");
+        }
+        else if(strcmp(argv[2],"-BAY")==0){
             strcpy(graph_folder,"../../instances/distanceGraphs/USA-road-d.BAY.gr");
+            strcpy(coord_folder,"../../instances/coordinates/USA-road-d.BAY.co");
+            strcpy(visited_coordinates_folder, "../../instances/coordinates/USA-road-d.BAY.Visited");
+            strcpy(path_coordinates_folder, "../../instances/coordinates/USA-road-d.BAY.Path");
+        }
         else if(strcmp(argv[2],"-RO")==0)
             strcpy(graph_folder,"../../instances/distanceGraphs/rome99.gr");
         else if(strcmp(argv[2],"-TES")==0)
@@ -100,14 +116,30 @@ void readParameters (int argc, char **argv){
     }
 
     else if(strcmp(argv[1],"-t")==0){
-        if(strcmp(argv[2],"-NY")==0)
+        if(strcmp(argv[2],"-NY")==0){
             strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.NY.gr");
-        else if(strcmp(argv[2],"-COL")==0)
+            strcpy(coord_folder,"../../instances/coordinates/USA-road-d.NY.co");
+            strcpy(visited_coordinates_folder, "../../instances/coordinates/USA-road-t.NY.Visited");
+            strcpy(path_coordinates_folder, "../../instances/coordinates/USA-road-t.NY.Path");
+        }
+        else if(strcmp(argv[2],"-COL")==0){
             strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.COL.gr");
-        else if(strcmp(argv[2],"-FLA")==0)
+            strcpy(coord_folder,"../../instances/coordinates/USA-road-d.COL.co");
+            strcpy(visited_coordinates_folder, "../../instances/coordinates/USA-road-t.COL.Visited");
+            strcpy(path_coordinates_folder, "../../instances/coordinates/USA-road-t.COL.Path");
+        }
+        else if(strcmp(argv[2],"-FLA")==0){
             strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.FLA.gr");
-        else if(strcmp(argv[2],"-BAY")==0)
+            strcpy(coord_folder,"../../instances/coordinates/USA-road-d.FLA.co");
+            strcpy(visited_coordinates_folder, "../../instances/coordinates/USA-road-t.FLA.Visited");
+            strcpy(path_coordinates_folder, "../../instances/coordinates/USA-road-t.FLA.Path");
+        }
+        else if(strcmp(argv[2],"-BAY")==0){
             strcpy(graph_folder,"../../instances/travelTimeGraphs/USA-road-t.BAY.gr");
+            strcpy(coord_folder,"../../instances/coordinates/USA-road-d.BAY.co");
+            strcpy(visited_coordinates_folder, "../../instances/coordinates/USA-road-t.BAY.Visited");
+            strcpy(path_coordinates_folder, "../../instances/coordinates/USA-road-t.BAY.Path");
+        }
         else if(strcmp(argv[2],"-RO")==0)
             strcpy(graph_folder,"../../instances/distanceGraphs/rome99.gr");
         else if(strcmp(argv[2],"-TES")==0)

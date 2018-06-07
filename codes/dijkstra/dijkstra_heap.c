@@ -258,9 +258,9 @@ t_graph_info dijkstra_heap (t_graph** adjacent_list, int graph_size, int vertex_
 	}
 
 	//while heap is not empty
-	//while (k!=vertex_end){
+	while (k!=vertex_end){
 	//printf("heap size: %d\n", h->n);getchar();
-	while(h->n != 0){
+	//while(h->n != 0){
         k = removeMin(h);
 		t_graph* p;
         for(p = adjacent_list[k]; p!=NULL; p = p->prox){

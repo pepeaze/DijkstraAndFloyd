@@ -9,6 +9,9 @@
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
 
 extern char graph_folder[60];
+extern char coord_folder[60];
+extern char visited_coordinates_folder[60];
+extern char path_coordinates_folder[60];
 extern char data_structure_type[3];
 
 struct type_graph{
@@ -25,7 +28,15 @@ struct type_path{
 typedef struct{
     int *distancia;
     int *anterior;
+    int *fechado;
 }t_graph_info;
+
+typedef struct{
+    char v;
+    int vertex;
+    int x;
+    int y;
+}t_coords;
 
 typedef struct type_graph t_graph;
 typedef struct type_path t_path;
