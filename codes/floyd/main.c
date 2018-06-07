@@ -1,4 +1,5 @@
 #include "../sharedLibrary/adjacentList.h"
+#include "vector.h"
 
 char graph_folder[60];
 char *path_folder;
@@ -20,7 +21,7 @@ int **alloc_matrix (int graph_size){
     return m;
 }
 
-int *floyd_list(t_graph** adjacent_list, int graph_size, int vertex_ini, int vertex_fin)
+int *floyd_matrix(t_graph** adjacent_list, int graph_size, int vertex_ini, int vertex_fin)
 {
     int i, j, k, *p;
     int inf = INT_MAX/2;
@@ -137,6 +138,48 @@ int *floyd_list(t_graph** adjacent_list, int graph_size, int vertex_ini, int ver
     return path;
 }
 
+int *floyd_vector(t_graph **adjacent_list, int graph_size, int vertex_ini, int vertex_fin)
+{
+    int i, j, k;
+    int inf = INT_MAX/2;
+    t_graph *v; // vertex in adjacent list
+    vector adjacentVector, distanceVector;
+
+    vector_init(&adjacentVector);
+    vector_init(&distanceVector);
+
+    /* Initializes every node's path to itself to 0 and the remaining combinations to infinite */
+    for (i = 0; i < graph_size*graph_size; i++)
+    {
+        if ((i + 1) % graph_size == 0)
+            vector_add(&distanceVector, 0);
+        else
+            vector_add(&distanceVector, inf);
+    }
+
+    /* Initializes every next node to -1. -1 means vertices are not adjacent */
+    for (i = 0; i < graph_size*graph_size; i++)
+    {
+        vector_add(&adjacentVector, -1);
+    }
+
+    /* Asigns weights to adjacent vertices and fill adjacent matrix */
+    for (i = 0; i < graph_size; i++)
+    {
+        for (v = adjacent_list[i]; v != NULL; v = v->prox)
+        {
+            vector_set(&distanceVector, i*graph_size + v->vertex, v->cost);
+            vector_set(&adjacentVector, i*graph_size + v->vertex, v->vertex);
+        }
+    }
+
+    /* Algorithm calculation */
+    // TODO
+
+    vector_free(&adjacentVector);
+    vector_free(&distanceVector);
+}
+
 void print_list(t_graph *graph){
     t_graph *p;
     for(p=graph; p!=NULL; p=p->prox){
@@ -173,7 +216,8 @@ int main(int argc, char **argv){
     if(strcmp(data_structure_type, "-l") == 0){
         adjacent_list = get_adjacent_list(adjacent_list, graph_size, f, argv);
         clock_t begin = clock();
-        distance = floyd_list(adjacent_list, graph_size, 0, 6);
+        //distance = floyd_matrix(adjacent_list, graph_size, 0, 6);
+        floyd_vector(adjacent_list, graph_size, 0, 6);
         clock_t end = clock();
         double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
         show_time_spent(time_spent);
