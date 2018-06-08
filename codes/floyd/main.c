@@ -67,11 +67,11 @@ int *floyd_matrix(t_graph** adjacent_list, int graph_size, int vertex_ini, int v
     }
 
     /* Algorithm calculation */
-    for (i = currentVertex; i < graph_size; i++)
+    for (k = currentVertex; k < graph_size; k++)
     {
-        for (j = currentVertex; j < graph_size; j++)
+        for (i = currentVertex; i < graph_size; i++)
         {
-            for (k = currentVertex; k < graph_size; k++)
+            for (j = currentVertex; j < graph_size; j++)
             {
                 if (minDistanceMatrix[i][j] > (minDistanceMatrix[i][k] + minDistanceMatrix[k][j]) )
                 {
