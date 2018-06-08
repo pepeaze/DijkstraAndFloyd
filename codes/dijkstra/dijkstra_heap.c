@@ -232,6 +232,7 @@ t_graph_info dijkstra_heap (t_graph** adjacent_list, int graph_size, int vertex_
     int dist_v1,dist_k,edge_weight;
     r.distancia = alloc_array (graph_size);
     r.anterior = alloc_array (graph_size);
+    r.fechado = alloc_array (graph_size);
     //initialise heap with dist values
 	Heap *h = createHeap();
 	insert(h,vertex_ini,0);
@@ -241,6 +242,13 @@ t_graph_info dijkstra_heap (t_graph** adjacent_list, int graph_size, int vertex_
             r.distancia[i] = 0;
         else
             r.distancia[i] = inf;
+    }
+
+    for(i = 0; i<graph_size; i++){
+        if(i == v_ini)
+            r.fechado[i] = 1;
+        else
+            r.fechado[i] = 0;
     }
 
     for(i = 0; i<graph_size; i++){
@@ -262,6 +270,7 @@ t_graph_info dijkstra_heap (t_graph** adjacent_list, int graph_size, int vertex_
 	//printf("heap size: %d\n", h->n);getchar();
 	//while(h->n != 0){
         k = removeMin(h);
+        r.fechado[k] = 1;
 		t_graph* p;
         for(p = adjacent_list[k]; p!=NULL; p = p->prox){
 

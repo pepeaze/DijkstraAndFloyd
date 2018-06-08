@@ -167,7 +167,25 @@ void save_path_coordinates_file(t_graph_info dijkstra_results, t_coords *coords,
         i = dijkstra_results.anterior[i];
     }
     fclose(f);
+}
 
+void save_distance_and_anterior_file (int **distancia, int **anterior, int graph_size){
+    FILE *f, *f1;
+    int i, j;
+
+    f = fopen("rome.anterior.matrix.txt", "w");
+    f1 = fopen("rome.distancia.matrix.txt", "w");
+
+    for(i=0; i<graph_size; i++){
+        for(j=0; j<graph_size; j++){
+            fprintf(f, "%d ", anterior[i][j]);
+            fprintf(f1, "%d ", distancia[i][j]);
+        }
+        fprintf(f, "\n");
+        fprintf(f1, "\n");
+    }
+    fclose(f);
+    fclose(f1);
 }
 
 t_coords *read_coordinates_from_file(FILE *f, int graph_size){
@@ -192,9 +210,9 @@ int main(int argc, char **argv){
     t_path *path;
     path = (t_path*)malloc(3*sizeof(t_path));
 
-    int **adjacent_matrix;
-
+    int **anterior_matrix;
     int **distance_matrix;
+
     t_graph_info dijkstra_results;
     t_coords *coords;
     //int *distance;
@@ -208,10 +226,12 @@ int main(int argc, char **argv){
         exit(0);
     }
 
-    f1 = fopen (coord_folder, "r");
-    if(f1==NULL){
-        printf("Fail to read file!\n");
-        exit(0);
+    if(strcmp(argv[2], "-RO") != 0){
+        f1 = fopen (coord_folder, "r");
+        if(f1==NULL){
+            printf("Fail to read file!\n");
+            exit(0);
+        }
     }
 
     graph_size = get_graph_size(f, argv);
@@ -224,19 +244,38 @@ int main(int argc, char **argv){
 
     if(strcmp(data_structure_type, "-v") == 0){
         printf("dijkstra_array\n");
-        for(i=0;i<3;i++){
+        if(strcmp(argv[2], "-RO") == 0){
+            int j;
+            distance_matrix = alloc_matrix(graph_size);
+            anterior_matrix = alloc_matrix(graph_size);
             clock_t begin = clock();
-            dijkstra_results = dijkstra_array (adjacent_list, graph_size, path[i].src, path[i].dest);
+            for(i=0;i<graph_size;i++){
+                dijkstra_results = dijkstra_array (adjacent_list, graph_size, i, i, argv);
+                for(j=0; j<graph_size; j++){
+                    distance_matrix[i][j] = dijkstra_results.distancia[j];
+                    anterior_matrix[i][j] = dijkstra_results.anterior[j];
+                }
+            }
             clock_t end = clock();
             double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-            printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
             show_time_spent(time_spent);
-            if(strcmp(argv[2], "-RO") != 0 && strcmp(argv[2], "-TES") != 0){
-                save_visited_coordinates_file(dijkstra_results,coords,graph_size, i);
-                save_path_coordinates_file(dijkstra_results,coords,graph_size, path[i].dest, i);
-            }
-
+            save_distance_and_anterior_file(distance_matrix, anterior_matrix, graph_size);
         }
+        else{
+            for(i=0;i<3;i++){
+                clock_t begin = clock();
+                dijkstra_results = dijkstra_array (adjacent_list, graph_size, path[i].src, path[i].dest,argv);
+                clock_t end = clock();
+                double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+                printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
+                show_time_spent(time_spent);
+                if(strcmp(argv[2], "-RO") != 0 && strcmp(argv[2], "-TES") != 0){
+                    save_visited_coordinates_file(dijkstra_results,coords,graph_size, i);
+                    save_path_coordinates_file(dijkstra_results,coords,graph_size, path[i].dest, i);
+                }
+            }
+        }
+
     }
 
     if(strcmp(data_structure_type, "-h") == 0){
@@ -248,6 +287,10 @@ int main(int argc, char **argv){
             double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
             printf("Distance from %d to %d vertex: %d\n", path[i].src+1, path[i].dest+1,dijkstra_results.distancia[path[i].dest]);
             show_time_spent(time_spent);
+            //if(strcmp(argv[2], "-RO") != 0 && strcmp(argv[2], "-TES") != 0){
+            //    save_visited_coordinates_file(dijkstra_results,coords,graph_size, i);
+            //    save_path_coordinates_file(dijkstra_results,coords,graph_size, path[i].dest, i);
+            //}
         }
     }
 

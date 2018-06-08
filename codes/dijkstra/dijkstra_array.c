@@ -16,7 +16,7 @@ int **alloc_matrix (int graph_size){
     return m;
 }
 
-t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex_ini, int vertex_end){
+t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex_ini, int vertex_end, char **argv){
     t_graph_info r;
     int *fechado, *aberto, v_ini = vertex_ini, abertos, k, inf = INT_MAX/2, maior = INT_MAX, custo, i, j;
     r.distancia = alloc_array (graph_size);
@@ -52,38 +52,72 @@ t_graph_info dijkstra_array (t_graph** adjacent_list, int graph_size, int vertex
             r.anterior[i] = 0;
     }
 
-
-    //while (abertos != graph_size){
-    while (k!=vertex_end){
-        if(abertos==1)
-            k=v_ini;
-        else{
-            for (i=0; i<graph_size; i++){
-                if(aberto[i]==1 && r.distancia[i]<maior){
-                    maior = r.distancia[i];
-                    k=i;
+    if(strcmp(argv[2],"-RO")==0){
+        while (abertos != graph_size){
+            if(abertos==1)
+                k=v_ini;
+            else{
+                for (i=0; i<graph_size; i++){
+                    if(aberto[i]==1 && r.distancia[i]<maior){
+                        maior = r.distancia[i];
+                        k=i;
+                    }
                 }
             }
-        }
-        if(abertos!=1){
-            aberto[k] = 0;
-            r.fechado[k] = 1;
-        }
+            if(abertos!=1){
+                aberto[k] = 0;
+                r.fechado[k] = 1;
+            }
 
-        t_graph* p;
+            t_graph* p;
 
-        for(p = adjacent_list[k]; p!=NULL; p = p->prox){
-            if(aberto[p->vertex]!=0){
-                custo = MIN (r.distancia[p->vertex], (r.distancia[k]+p->cost));
-                if(custo < r.distancia[p->vertex]){
-                    r.distancia[p->vertex] = custo;
-                    r.anterior[p->vertex] = k;
+            for(p = adjacent_list[k]; p!=NULL; p = p->prox){
+                if(aberto[p->vertex]!=0){
+                    custo = MIN (r.distancia[p->vertex], (r.distancia[k]+p->cost));
+                    if(custo < r.distancia[p->vertex]){
+                        r.distancia[p->vertex] = custo;
+                        r.anterior[p->vertex] = k;
+                    }
                 }
             }
+            abertos ++;
+            maior = INT_MAX;
         }
-        abertos ++;
-        maior = INT_MAX;
     }
+    else{
+        while (k!=vertex_end){
+            if(abertos==1)
+                k=v_ini;
+            else{
+                for (i=0; i<graph_size; i++){
+                    if(aberto[i]==1 && r.distancia[i]<maior){
+                        maior = r.distancia[i];
+                        k=i;
+                    }
+                }
+            }
+            if(abertos!=1){
+                aberto[k] = 0;
+                r.fechado[k] = 1;
+            }
+
+            t_graph* p;
+
+            for(p = adjacent_list[k]; p!=NULL; p = p->prox){
+                if(aberto[p->vertex]!=0){
+                    custo = MIN (r.distancia[p->vertex], (r.distancia[k]+p->cost));
+                    if(custo < r.distancia[p->vertex]){
+                        r.distancia[p->vertex] = custo;
+                        r.anterior[p->vertex] = k;
+                    }
+                }
+            }
+            abertos ++;
+            maior = INT_MAX;
+        }
+    }
+
+
 
 
     /*for(j=0;j<graph_size;j++)
