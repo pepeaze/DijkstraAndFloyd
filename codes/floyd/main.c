@@ -106,19 +106,6 @@ int *floyd_matrix(t_graph** adjacent_list, int graph_size, int vertex_ini, int v
 
 	save_distance_and_anterior_file(minDistanceMatrix, nextVertexMatrix, graph_size);
 
-    // printf("Adjacent Matrix:\n");
-    // /* print matrix */
-    // for (i = currentVertex; i < graph_size; i++)
-    // {
-    //     for (j = currentVertex; j < graph_size; j++)
-    //     {
-    //         printf("%2d ", nextVertexMatrix[i][j]);
-    //     }
-
-    //     printf("\n");
-    // }
-    // printf("\n");
-
     /* Path reconstruction */
     if (nextVertexMatrix[vertex_ini][vertex_fin] == -1)
         return;
@@ -135,28 +122,6 @@ int *floyd_matrix(t_graph** adjacent_list, int graph_size, int vertex_ini, int v
         i++;
         size++;
     }
-
-    // printf("Path:\n");
-    // /* Print path */
-    // for (i = 0; i < size; i++)
-    // {
-    //     printf("%d\t", path[i]);
-    // }
-    // printf("\n\n");
-
-    // printf("Distance Matrix:\n");
-    // /* print matrix */
-    // for (i = currentVertex; i < graph_size; i++)
-    // {
-    //     for (j = currentVertex; j < graph_size; j++)
-    //     {
-    //         printf("%2d ", minDistanceMatrix[i][j]);
-    //     }
-
-    //     printf("\n");
-    // }
-    // printf("\n");
-
 
     return path;
 }
