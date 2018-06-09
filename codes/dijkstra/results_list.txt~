@@ -1,0 +1,84 @@
+NY distance:
+Graph Vertexes: 264346
+dijkstra_heap
+Distance from 1 to 264314 vertex: 359425
+Time spent: 0.016686 secs
+Distance from 1 to 225019 vertex: 719659
+Time spent: 0.067572 secs
+Distance from 1 to 90644 vertex: 1440081
+Time spent: 0.111725 secs
+
+NY time:
+Graph Vertexes: 264346
+dijkstra_heap
+Distance from 1 to 262761 vertex: 477526
+Time spent: 0.014851 secs
+Distance from 1 to 222033 vertex: 957198
+Time spent: 0.080786 secs
+Distance from 1 to 90644 vertex: 1916421
+Time spent: 0.114438 secs
+
+
+BAY distance:
+Graph Vertexes: 321270
+dijkstra_heap
+Distance from 1 to 260767 vertex: 539988
+Time spent: 0.039093 secs
+Distance from 1 to 318362 vertex: 1082034
+Time spent: 0.096090 secs
+Distance from 1 to 98763 vertex: 2165941
+Time spent: 0.138710 secs
+
+BAY time:
+Graph Vertexes: 321270
+dijkstra_heap
+Distance from 1 to 258805 vertex: 866301
+Time spent: 0.053536 secs
+Distance from 1 to 320390 vertex: 1737617
+Time spent: 0.117376 secs
+Distance from 1 to 98813 vertex: 3480192
+Time spent: 0.145794 secs
+
+
+COL distance:
+Graph Vertexes: 435666
+dijkstra_heap
+Distance from 1 to 402948 vertex: 1804428
+Time spent: 0.098990 secs
+Distance from 1 to 382913 vertex: 3616936
+Time spent: 0.150582 secs
+Distance from 1 to 316378 vertex: 7246198
+Time spent: 0.195049 secs
+
+COL time:
+Graph Vertexes: 435666
+dijkstra_heap
+Distance from 1 to 434170 vertex: 2694987
+Time spent: 0.098132 secs
+Distance from 1 to 194411 vertex: 5483070
+Time spent: 0.164361 secs
+Distance from 1 to 316378 vertex: 10935293
+Time spent: 0.196074 secs
+
+
+FLA distance:
+Graph Vertexes: 1070376
+dijkstra_heap
+Distance from 1 to 279201 vertex: 2907930
+Time spent: 0.074377 secs
+Distance from 1 to 1045674 vertex: 5829987
+Time spent: 0.149866 secs
+Distance from 1 to 634662 vertex: 11674195
+Time spent: 0.491751 secs
+
+FLA time:
+Graph Vertexes: 1070376
+dijkstra_heap
+Distance from 1 to 1065120 vertex: 3417632
+Time spent: 0.077648 secs
+Distance from 1 to 1039873 vertex: 6870773
+Time spent: 0.206668 secs
+Distance from 1 to 593824 vertex: 13776909
+Time spent: 0.508526 secs
+
+

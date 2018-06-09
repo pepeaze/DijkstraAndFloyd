@@ -1,0 +1,88 @@
+NY distance:
+Graph Vertexes: 264346
+dijkstra_array
+Distance from 1 to 264314 vertex: 359425
+Time spent: 13.848363 secs
+Distance from 1 to 225019 vertex: 719659
+Time spent: 1 mins 7 secs
+Distance from 1 to 90644 vertex: 1440081
+Time spent: 1 mins 52 secs
+
+NY time:
+Graph Vertexes: 264346
+dijkstra_array
+Distance from 1 to 262761 vertex: 477526
+Time spent: 9.890253 secs
+Distance from 1 to 222033 vertex: 957198
+Time spent: 1 mins 14 secs
+Distance from 1 to 90644 vertex: 1916421
+Time spent: 1 mins 57 secs
+
+
+BAY distance:
+Graph Vertexes: 321270
+dijkstra_array
+Distance from 1 to 260767 vertex: 539988
+Time spent: 40.983618 secs
+Distance from 1 to 318362 vertex: 1082034
+Time spent: 1 mins 54 secs
+Distance from 1 to 98763 vertex: 2165941
+Time spent: 2 mins 45 secs
+
+BAY time:
+Graph Vertexes: 321270
+dijkstra_array
+Distance from 1 to 258805 vertex: 866301
+Time spent: 57.966595 secs
+Distance from 1 to 320390 vertex: 1737617
+Time spent: 2 mins 13 secs
+Distance from 1 to 98813 vertex: 3480192
+Time spent: 2 mins 45 secs
+
+
+COL distance:
+Graph Vertexes: 435666
+dijkstra_array
+Distance from 1 to 402948 vertex: 1804428
+Time spent: 3 mins 28 secs
+Distance from 1 to 382913 vertex: 3616936
+Time spent: 5 mins 26 secs
+Distance from 1 to 316378 vertex: 7246198
+Time spent: 7 mins 6 secs
+
+COL time:
+Graph Vertexes: 435666
+dijkstra_array
+Distance from 1 to 434170 vertex: 2694987
+Time spent: 3 mins 21 secs
+Distance from 1 to 194411 vertex: 5483070
+Time spent: 5 mins 45 secs
+Distance from 1 to 316378 vertex: 10935293
+Time spent: 7 mins 23 secs
+
+
+FLA distance:
+Graph Vertexes: 1070376
+dijkstra_array
+Distance from 1 to 279201 vertex: 2907930
+Time spent: 3 mins 13 secs
+Distance from 1 to 1045674 vertex: 5829987
+Time spent: 8 mins 17 secs
+Distance from 1 to 634662 vertex: 11674195
+Time spent: 30 mins 20 secs
+
+FLA time:
+Graph Vertexes: 1070376
+dijkstra_array
+Distance from 1 to 1065120 vertex: 3417632
+Time spent: 3 mins 36 secs
+Distance from 1 to 1039873 vertex: 6870773
+Time spent: 11 mins 45 secs
+Distance from 1 to 593824 vertex: 13776909
+Time spent: 30 mins 3 secs
+
+
+ROME for all paths:
+Graph Vertexes: 3353
+dijkstra_array
+Time spent: 1 mins 3 secs

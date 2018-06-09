@@ -1,0 +1,50 @@
+NY distance:
+Graph Vertexes: 264346
+Facil: 1 X 264314 vertex
+Medio: 1 X 225019 vertex
+Dificil: 1 X 90644 vertex
+
+NY time:
+Graph Vertexes: 264346
+Facil: 1 X 262761 vertex
+Medio: 1 X 222033 vertex
+Dificil: 1 X 90644 vertex
+
+
+BAY distance:
+Graph Vertexes: 321270
+Facil: 1 X 260767 vertex
+Medio: 1 X 318362 vertex
+Dificil: 1 X 98763 vertex
+
+BAY time:
+Graph Vertexes: 321270
+Facil: 1 X 258805 vertex
+Medio: 1 X 320390 vertex
+Dificil: 1 X 98813 vertex
+
+
+COL distance:
+Graph Vertexes: 435666
+Facil: 1 X 402948 vertex
+Medio: 1 X 382913 vertex
+Dificil: 1 X 316378 vertex
+
+COL time:
+Graph Vertexes: 435666
+Facil: 1 X 434170 vertex
+Medio: 1 X 194411 vertex
+Dificil: 1 X 316378 vertex
+
+
+FLA distance:
+Graph Vertexes: 1070376
+Facil: 1 X 279201 vertex
+Medio: 1 X 1045674 vertex
+Dificil: 1 X 634662 vertex
+
+FLA time:
+Graph Vertexes: 1070376
+Facil: 1 X 1065120 vertex
+Medio: 1 X 1039873 vertex
+Dificil: 1 X 593824 vertex

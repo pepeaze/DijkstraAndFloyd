@@ -26,7 +26,7 @@ echo
 echo FLA time:
 ./dijkstra -t -FLA -h
 echo
-#echo
+echo
 #echo BAY distance heap:
 #time ./dijkstra -d -BAY -h
 #echo BAY distance array:
